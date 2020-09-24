@@ -81,11 +81,15 @@
       chart: { backgroundColor: null },
       colors: ['#ff0000','#9a71ca'],
       title: { text:"Sensor Data" },
-      xAxis: {
+      xAxis: [{
         // type: 'datetime',
-        labels: { format: '{value:%b %d, %Y}' }
-      },
+        labels: { format: '{value:%b %d, %Y}' },
+        events:{
+          setExtremes:22000
+        }
+      }],
       yAxis: [{
+        zoomEnabled:enabled,
         gridLineWidth: 0,
         plotBands: [
           { label: {  text: 'Light',      style: {color:'#555'} },
