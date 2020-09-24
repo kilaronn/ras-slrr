@@ -60,7 +60,7 @@
         rain_data = [],
         i = 0;
 
-    for (i; i<rpi_info.length;i+=1){
+    for (i; i < rpi_info.length; i+=1){
       if(rpi_info[i][1]>0 && rpi_info[i][2]>0){
       sound_data.push([
         rpi_info[i][0],
@@ -73,38 +73,38 @@
       }
     }
 
-    Highcharts.stockChart('graph', {
+    Highcharts.chart('graph', {
       boost: { enabled:true, useGPUTranslations:true, usePreallocated:true, allowForce:true },
       plotOptions: { series: { showInNavigator: true, connectNulls:false, marker:{ enabled:true } } },
-      legend: { enabled: true, align: 'center', layout: 'horizontal', verticalAlign: 'bottom' },
+      legend: { enabled: false, align: 'center', layout: 'horizontal', verticalAlign: 'bottom' },
       scrollbar: { liveRedraw: false },
       chart: { backgroundColor: null },
       colors: ['#ff0000','#9a71ca'],
       title: { text:"Sensor Data" },
       xAxis: {
-        type: 'datetime',
+        // type: 'datetime',
         labels: { format: '{value:%b %d, %Y}' }
       },
       yAxis: [{
         gridLineWidth: 0,
         plotBands: [
           { label: {  text: 'Light',      style: {color:'#555'} },
-            from: 31.3, to: 60.3,         color: 'rgba(0, 0, 0, 0.1)' },
+            from: 0, to: 14000,         color: 'rgba(0, 0, 0, 0.1)' },
           { label: {  text: 'Moderate',   style: {color:'#555'} },
-            from: 60.4, to: 72.2,         color: 'rgba(0, 0, 0, 0.1)' },
+            from: 14000, to: 17000,         color: 'rgba(0, 0, 0, 0.1)' },
           { label: {  text: 'Intense',    style: {color:'#555'} },
-            from: 72.3, to: 84.5,         color: 'rgba(245, 154, 24, 0.1)' },
+            from: 17000, to: 18000,         color: 'rgba(245, 154, 24, 0.1)' },
           { label: {  text: 'Torrential', style: {color:'#555'} },
-            from: 84.6, to: 10000,        color: 'rgba(228, 27, 33, 0.1)' }
+            from: 18000, to: 1000000000,        color: 'rgba(228, 27, 33, 0.1)' }
         ]},{
-          title: { text: 'Sound level',          style: {color: Highcharts.getOptions().colors[0]} },
+          title: { text: 'Frequency',          style: {color: Highcharts.getOptions().colors[0]} },
           labels: { format: '{value} dB',        style: {color: Highcharts.getOptions().colors[0]} }
-        },
-        {
-          min: 0,
-          opposite: false,
-          title: { text: 'Rain rate',            style: {color: Highcharts.getOptions().colors[1]} },
-          labels: { format: '{value} mm/hr',     style: {color: Highcharts.getOptions().colors[1]} }
+        // },
+        // {
+        //   min: 0,
+        //   opposite: false,
+        //   title: { text: 'Rain rate',            style: {color: Highcharts.getOptions().colors[1]} },
+        //   labels: { format: '{value} mm/hr',     style: {color: Highcharts.getOptions().colors[1]} }
         }],
       tooltip: {
         pointFormat: '<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y}</b>{point.tooltip.valueSuffix}<br/>',
@@ -113,23 +113,27 @@
         shared: true,
         split: false
       },
+        data: {
+          enablePolling:true,
+          googleSpreadsheetKey: '1MyiGFdgxy20QSBJFldpnB8z6UeuvpeMrXL2YbxV3zlg',
+        },
       series: [{
-        name: "Sound level",  data: sound_data, tooltip: { valueSuffix: " dB" },
+        // name: "Frequency",
+        tooltip: { valueSuffix: " dB" },
         type: 'spline',
-        yAxis: 1
-      },{
-        name: "Rain rate",    data: rain_data,  tooltip: { valueSuffix: " mm" },
-        type: 'spline',
+        // yAxis: 1
+        // },{
+        // name: "Rain rate",
+        // data: {
+        //   enablePolling:true,
+        //   googleSpreadsheetKey: '1MyiGFdgxy20QSBJFldpnB8z6UeuvpeMrXL2YbxV3zlg'
+        // },
+        // tooltip: { valueSuffix: " mm" },
+        // type: 'spline',
         // yAxis: 1
       }]
     });
   });
 </script>
 
-<script src="{{asset('/js/highcharts/highstock.js')}}"></script>
-<script src="{{asset('/js/highcharts/data.js')}}"></script>
-<script src="{{asset('/js/highcharts/boost.js')}}"></script>
-<script src="{{asset('/js/highcharts/exporting.js')}}"></script>
-<script src="{{asset('/js/highcharts/export-data.js')}}"></script>
-<script src="{{asset('/js/highcharts/accessibility.js')}}"></script>
 @stop
