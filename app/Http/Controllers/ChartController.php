@@ -22,14 +22,14 @@ class ChartController extends Controller
       return array($dts,$dte);
     }
     
-    $rpi_data = SensorData::select('c_time','c_value','c_sensed_parameter')
-                // ->where([
-                //           ['c_sensor', '=', 'at']
-                //         ])
-                ->limit(10000)
-                ->orderBy('c_time')
-                ->get();
-
+    // $rpi_data = SensorData::select('c_time','c_value','c_sensed_parameter')
+    //             // ->where([
+    //             //           ['c_sensor', '=', 'at']
+    //             //         ])
+    //             ->limit(1)
+    //             ->orderBy('c_time')
+    //             ->get();
+    
     $rain_rate_info = array();
     $sound_level_info = array();
     $rpi_info = array();
@@ -40,53 +40,53 @@ class ChartController extends Controller
     $slValue = 0;
     $slPerHour = 0;
 
-    foreach($rpi_data as $rpi_datum){
+    // foreach($rpi_data as $rpi_datum){
 
-      $date = $rpi_datum->c_time;
+    //   $date = $rpi_datum->c_time;
     
-      if(!$rrPerHour && !$slPerHour){
-        [$dateStart,$dateEnd] = getDateStartEnd($rpi_datum->c_time);
-      }
-      if($date >= $dateStart && $date <= $dateEnd){
+    //   if(!$rrPerHour && !$slPerHour){
+    //     [$dateStart,$dateEnd] = getDateStartEnd($rpi_datum->c_time);
+    //   }
+    //   if($date >= $dateStart && $date <= $dateEnd){
 
-        if($rpi_datum->c_sensed_parameter == "rr"){
-          $rrValue = $rrValue + $rpi_datum->c_value;
-          $rrPerHour++;
-        }
-        elseif($rpi_datum->c_sensed_parameter == "sl"){
-          $slValue = $slValue + $rpi_datum->c_value;
-          $slPerHour++;
-        }
+    //     if($rpi_datum->c_sensed_parameter == "rr"){
+    //       $rrValue = $rrValue + $rpi_datum->c_value;
+    //       $rrPerHour++;
+    //     }
+    //     elseif($rpi_datum->c_sensed_parameter == "sl"){
+    //       $slValue = $slValue + $rpi_datum->c_value;
+    //       $slPerHour++;
+    //     }
 
-      }else {
+    //   }else {
 
-        $rrValue = $rrValue/($rrPerHour?$rrPerHour:1);
-        $slValue = $slValue/($slPerHour?$slPerHour:1);
+    //     $rrValue = $rrValue/($rrPerHour?$rrPerHour:1);
+    //     $slValue = $slValue/($slPerHour?$slPerHour:1);
 
-        // $rain_rate_info[] = array($dateStart, $rrValue);
-        // $sound_level_info[] = array($dateStart, $slValue);
+    //     // $rain_rate_info[] = array($dateStart, $rrValue);
+    //     // $sound_level_info[] = array($dateStart, $slValue);
 
-        $rpi_info[] = array($dateStart, $slValue, $rrValue);
+    //     $rpi_info[] = array($dateStart, $slValue, $rrValue);
 
-        $rrValue = 0;
-        $slValue = 0;
+    //     $rrValue = 0;
+    //     $slValue = 0;
 
-        $rrPerHour = 0;
-        $slPerHour = 0;
+    //     $rrPerHour = 0;
+    //     $slPerHour = 0;
         
-        [$dateStart,$dateEnd] = getDateStartEnd($rpi_datum->c_time);
+    //     [$dateStart,$dateEnd] = getDateStartEnd($rpi_datum->c_time);
 
-        if($rpi_datum->c_sensed_parameter == "rr"){
-          $rrValue = $rrValue + $rpi_datum->c_value;
-          $rrPerHour++;
-        }
-        elseif($rpi_datum->c_sensed_parameter == "sl"){
-          $slValue = $slValue + $rpi_datum->c_value;
-          $slPerHour++;
-        }
+    //     if($rpi_datum->c_sensed_parameter == "rr"){
+    //       $rrValue = $rrValue + $rpi_datum->c_value;
+    //       $rrPerHour++;
+    //     }
+    //     elseif($rpi_datum->c_sensed_parameter == "sl"){
+    //       $slValue = $slValue + $rpi_datum->c_value;
+    //       $slPerHour++;
+    //     }
 
-      }
-    }
+    //   }
+    // }
     // return $rain_rate_info;
 
     return view('chartSLRR')
