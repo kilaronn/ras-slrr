@@ -126,7 +126,7 @@ console.log(c);
         data: {
           enablePolling:true,
           // googleSpreadsheetKey: '1MyiGFdgxy20QSBJFldpnB8z6UeuvpeMrXL2YbxV3zlg',
-          // csvURL:"http://128.199.161.14/storage/demo.csv"
+          csvURL:"http://128.199.161.14/storage/demo.csv"
         },
       series: [{
         // name: "Frequency",
