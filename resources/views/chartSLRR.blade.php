@@ -79,17 +79,17 @@ console.log(c);
       }
     }
 
-    Highcharts.chart('graph', {
+    Highcharts.stockChart('graph', {
       boost: { enabled:true, useGPUTranslations:true, usePreallocated:true, allowForce:true },
       plotOptions: { series: { showInNavigator: true, connectNulls:false, marker:{ enabled:true } } },
-      legend: { enabled: false, align: 'center', layout: 'horizontal', verticalAlign: 'bottom' },
+      legend: { enabled: true, align: 'center', layout: 'horizontal', verticalAlign: 'bottom' },
       scrollbar: { liveRedraw: false },
       chart: { backgroundColor: null },
       colors: ['#ff0000','#9a71ca'],
       title: { text:"Sensor Data" },
       xAxis: [{
-        // type: 'datetime',
-        labels: { format: '{value:%b %d, %Y}' }
+        type: 'datetime',
+        labels: { format: '{value:%b %d, %Y %H:%M}' }
       }],
       yAxis: [{
         minRange:22000,
@@ -125,20 +125,16 @@ console.log(c);
       },
         data: {
           enablePolling:true,
-          // googleSpreadsheetKey: '1MyiGFdgxy20QSBJFldpnB8z6UeuvpeMrXL2YbxV3zlg',
           csvURL:"http://128.199.161.14/storage/demo.csv"
         },
       series: [{
-        // name: "Frequency",
+        name: "Frequency",
         tooltip: { valueSuffix: " dB" },
         type: 'spline',
         // yAxis: 1
         // },{
         // name: "Rain rate",
-        // data: {
-        //   enablePolling:true,
-        //   googleSpreadsheetKey: '1MyiGFdgxy20QSBJFldpnB8z6UeuvpeMrXL2YbxV3zlg'
-        // },
+        // data: ,
         // tooltip: { valueSuffix: " mm" },
         // type: 'spline',
         // yAxis: 1

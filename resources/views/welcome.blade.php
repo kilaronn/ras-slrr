@@ -38,7 +38,7 @@
 
 
     
-<script src="{{asset('/js/highcharts.js')}}"></script>
+{{-- <script src="{{asset('/js/highcharts.js')}}"></script> --}}
 <script src="{{asset('/js/highstock.js')}}"></script>
 <script src="{{asset('/js/data.js')}}"></script>
 <script src="{{asset('/js/boost.js')}}"></script>
