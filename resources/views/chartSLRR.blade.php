@@ -83,13 +83,11 @@
       title: { text:"Sensor Data" },
       xAxis: [{
         // type: 'datetime',
-        labels: { format: '{value:%b %d, %Y}' },
-        events:{
-          setExtremes:22000
-        }
+        labels: { format: '{value:%b %d, %Y}' }
       }],
       yAxis: [{
-        zoomEnabled:enabled,
+        minRange:22000,
+        min:0,
         gridLineWidth: 0,
         plotBands: [
           { label: {  text: 'Light',      style: {color:'#555'} },
@@ -120,6 +118,9 @@
         data: {
           enablePolling:true,
           googleSpreadsheetKey: '1MyiGFdgxy20QSBJFldpnB8z6UeuvpeMrXL2YbxV3zlg',
+          // csvURL:"https://doc-14-78-docs.googleusercontent.com/docs/securesc/r4t0aqdueve772686tpg1to3udi8j924/281r2vj8ap7h1a3ubg5t01l19br028tk/1600991100000/04630474349753877361/04630474349753877361/1EPO4KZQWRoT0Hl2VtRqBF8xmN6wKXJ0r?e=download&authuser=0&nonce=uqa753mhouo2u&user=04630474349753877361&hash=ja9iqt8sqvn9stjf8jj1eo3drm4sp4li"
+          // csvURL:"https://drive.google.com/file/d/1EPO4KZQWRoT0Hl2VtRqBF8xmN6wKXJ0r/view"
+          // csvURL:"https://drive.google.com/file/d/1EPO4KZQWRoT0Hl2VtRqBF8xmN6wKXJ0r/view?usp=sharing"
         },
       series: [{
         // name: "Frequency",
