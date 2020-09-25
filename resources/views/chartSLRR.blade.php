@@ -11,7 +11,7 @@
         <a href="{{route('import')}}" class="nav-link">IMPORT</a>
       </li>
     </ul>
-    
+
     {{-- <input type="text" class="datepicker"> --}}
     <div id="graph" class="bg-light p-5 shadow mb-5"></div>
     <table class="table table-sm table-hover">
@@ -49,6 +49,12 @@
 
 {{-- Begin Script --}}
 <script type="text/javascript">
+
+var url_string = window.location.href;
+var url = new URL(url_string);
+var c = url.searchParams.get("data");
+
+console.log(c);
   $(function(){
     $( ".datepicker" ).datepicker({
       todayHighlight: true,
@@ -91,11 +97,13 @@
         gridLineWidth: 0,
         plotBands: [
           { label: {  text: 'Light',      style: {color:'#555'} },
-            from: 0, to: 14000,         color: 'rgba(0, 0, 0, 0.1)' },
+            from: 2000, to: 12000,         color: 'rgba(0, 0, 0, 0.1)' },
           { label: {  text: 'Moderate',   style: {color:'#555'} },
-            from: 14000, to: 17000,         color: 'rgba(0, 0, 0, 0.1)' },
+            from: 12000, to: 14000,         color: 'rgba(0, 0, 0, 0.1)' },
+          { label: {  text: 'Heavy',    style: {color:'#555'} },
+            from: 14000, to: 16500,         color: 'rgba(0, 0, 0, 0.1)' },
           { label: {  text: 'Intense',    style: {color:'#555'} },
-            from: 17000, to: 18000,         color: 'rgba(245, 154, 24, 0.1)' },
+            from: 15600, to: 18000,         color: 'rgba(245, 154, 24, 0.1)' },
           { label: {  text: 'Torrential', style: {color:'#555'} },
             from: 18000, to: 1000000000,        color: 'rgba(228, 27, 33, 0.1)' }
         ]},{
@@ -117,10 +125,8 @@
       },
         data: {
           enablePolling:true,
-          googleSpreadsheetKey: '1MyiGFdgxy20QSBJFldpnB8z6UeuvpeMrXL2YbxV3zlg',
-          // csvURL:"https://doc-14-78-docs.googleusercontent.com/docs/securesc/r4t0aqdueve772686tpg1to3udi8j924/281r2vj8ap7h1a3ubg5t01l19br028tk/1600991100000/04630474349753877361/04630474349753877361/1EPO4KZQWRoT0Hl2VtRqBF8xmN6wKXJ0r?e=download&authuser=0&nonce=uqa753mhouo2u&user=04630474349753877361&hash=ja9iqt8sqvn9stjf8jj1eo3drm4sp4li"
-          // csvURL:"https://drive.google.com/file/d/1EPO4KZQWRoT0Hl2VtRqBF8xmN6wKXJ0r/view"
-          // csvURL:"https://drive.google.com/file/d/1EPO4KZQWRoT0Hl2VtRqBF8xmN6wKXJ0r/view?usp=sharing"
+          // googleSpreadsheetKey: '1MyiGFdgxy20QSBJFldpnB8z6UeuvpeMrXL2YbxV3zlg',
+          // csvURL:"http://128.199.161.14/storage/demo.csv"
         },
       series: [{
         // name: "Frequency",
