@@ -108,7 +108,7 @@ console.log(c);
             from: 18000, to: 1000000000,        color: 'rgba(228, 27, 33, 0.1)' }
         ]},{
           title: { text: 'Frequency',          style: {color: Highcharts.getOptions().colors[0]} },
-          labels: { format: '{value} dB',        style: {color: Highcharts.getOptions().colors[0]} }
+          labels: { format: '{value} Hz',        style: {color: Highcharts.getOptions().colors[0]} }
         // },
         // {
         //   min: 0,
@@ -129,7 +129,7 @@ console.log(c);
         },
       series: [{
         name: "Frequency",
-        tooltip: { valueSuffix: " dB" },
+        tooltip: { valueSuffix: "Hz" },
         type: 'spline',
         // yAxis: 1
         // },{
