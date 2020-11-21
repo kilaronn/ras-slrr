@@ -11,10 +11,10 @@
         <style>
           html, body {
               min-height: 100vh;
-              margin: 0;
+              margin: 10px 0 0 0;
               width:100%;
           }
-          #graph{
+          #graph,#rain-acc{
             height: 680px;
           }
         </style>

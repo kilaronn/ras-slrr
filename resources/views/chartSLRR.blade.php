@@ -3,14 +3,14 @@
 
   <div class="container">
     
-    <ul class="nav">
+    {{-- <ul class="nav">
       <li class="nav-item">
         <a href="{{route('home')}}" class="nav-link active">HOME</a>
       </li>
       <li class="nav-item">
         <a href="{{route('import')}}" class="nav-link">IMPORT</a>
       </li>
-    </ul>
+    </ul> --}}
 
     {{-- <input type="text" class="datepicker"> --}}
 
